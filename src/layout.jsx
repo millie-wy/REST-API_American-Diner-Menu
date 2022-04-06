@@ -19,39 +19,38 @@ const Layout = () => {
       style={{
         background: "yellow",
         height: "200px",
-        width: "600px",
+        width: "500px",
       }}
     >
       <h1>HELLO FROM REACT</h1>
       {/* <button onClick={loadMenu}>Open Menu</button> */}
       {menu.map((items) =>
-        items.map((item) => {
-          if (item.category === "Burger") {
-            console.log(item.title, item.description, item.price);
-            <div
-              key={item.id}
-              style={{
-                height: "200px",
-                width: "200px",
-                background: "skyblue",
-              }}
-            >
-              <p>{item.title}</p>
-              <p>{item.description}</p>
-              <p>{item.price}</p>
-            </div>;
-          } else {
-            console.log("ELSE: " + item.title, item.description, item.price);
-          }
-        })
+        items.map((item) => (
+          // if (item.category === "Burger") {
+          //   console.log(item.title, item.description, item.price);
+          <div
+            key={item.id}
+            style={{
+              height: "200px",
+              width: "200px",
+              background: "skyblue",
+            }}
+          >
+            <p>{item.title}</p>
+            <p>{item.description}</p>
+            <p>{item.price}</p>
+          </div>
+          // } else {
+          //   console.log("ELSE: " + item.title, item.description, item.price);
+          // }
+        ))
       )}
       <p>End?</p>
     </div>
   );
 };
 
-const container = document.getElementById("root");
-const root = ReactDOM.createRoot(container);
-root.render(<Layout />);
+ReactDOM.render(<Layout />, document.querySelector("#root"));
 
-// ReactDOM.render(<Layout />, document.querySelector("#root"));
+// const root = createRoot(document.getElementById("root"));
+// root.render(<Layout />);

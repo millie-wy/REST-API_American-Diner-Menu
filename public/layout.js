@@ -23,13 +23,17 @@ var Layout = function Layout() {
     });
   }, []);
 
-  return React.createElement(
+  return menu.length === 0 ? React.createElement(
+    "h1",
+    null,
+    "nothing to show ????"
+  ) : React.createElement(
     "div",
     {
       style: {
         background: "yellow",
         height: "200px",
-        width: "600px"
+        width: "500px"
       }
     },
     React.createElement(
@@ -39,8 +43,9 @@ var Layout = function Layout() {
     ),
     menu.map(function (items) {
       return items.map(function (item) {
-        if (item.category === "Burger") {
-          console.log(item.title, item.description, item.price);
+        return (
+          // if (item.category === "Burger") {
+          //   console.log(item.title, item.description, item.price);
           React.createElement(
             "div",
             {
@@ -66,10 +71,12 @@ var Layout = function Layout() {
               null,
               item.price
             )
-          );
-        } else {
-          console.log("ELSE: " + item.title, item.description, item.price);
-        }
+          )
+          // } else {
+          //   console.log("ELSE: " + item.title, item.description, item.price);
+          // }
+
+        );
       });
     }),
     React.createElement(
@@ -80,8 +87,7 @@ var Layout = function Layout() {
   );
 };
 
-var container = document.getElementById("root");
-var root = ReactDOM.createRoot(container);
-root.render(React.createElement(Layout, null));
+ReactDOM.render(React.createElement(Layout, null), document.querySelector("#root"));
 
-// ReactDOM.render(<Layout />, document.querySelector("#root"));
+// const root = createRoot(document.getElementById("root"));
+// root.render(<Layout />);
