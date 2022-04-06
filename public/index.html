@@ -5,9 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Laboration 1</title>
-    <script src="./logic.js"></script>
+
+    <!-- load react -->
+    <script
+      src="https://unpkg.com/react@17.0.2/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+
+    <!-- load jsx  -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- load react component -->
+    <script defer type="text/babel" src="./layout.js"></script>
+    <script defer src="./logic.js"></script>
+    <script defer data-plugins="transform-es2015-modules-umd" type="text/babel">
+      ReactDOM.render(<Layout />, document.querySelector("#root"));
+    </script>
   </head>
   <body>
-    <h1>Hello hello!!</h1>
+    <div id="root"></div>
   </body>
 </html>
