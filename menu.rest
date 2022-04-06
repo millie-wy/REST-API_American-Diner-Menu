@@ -6,8 +6,8 @@ Content-Type: application/json
 
   {
     "category": "Burger",
-    "title": "New Burger",
-    "description": "Some ingredients",
+    "title": "New York Buffalo Burger",
+    "description": "Southern Fried Chicken Thigh Fillets, Slaw, American Cheddar, Butteremilk Ranch, Burger sauce, Brioche Bun",
     "price": 999
   }
 
