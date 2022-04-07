@@ -41,7 +41,7 @@ const Layout = () => {
       .then((jsonData) => {
         setMenu([...menu, jsonData]);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.message));
   }, []);
 
   return menu.length === 0 ? (

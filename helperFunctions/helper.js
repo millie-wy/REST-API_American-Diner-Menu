@@ -21,7 +21,7 @@ export function saveMenu(updatedMenu) {
 export function doesMenuExist(id) {
   let currentMenu = getMenu();
   let item = currentMenu.find((item) => {
-    item.id === id;
+    return item.id === id;
   });
   if (item) {
     return true;

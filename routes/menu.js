@@ -45,6 +45,7 @@ router.put("/", (req, res) => {
       .send(
         "The item does not exist... 💔 \nDouble check the ID and try again?"
       );
+    return;
   }
   let adjustedMenu = currentMenu.map((item) => {
     if (item.id === id) {
@@ -52,9 +53,8 @@ router.put("/", (req, res) => {
     }
     return item;
   });
-  console.log(adjustedMenu);
   saveMenu(adjustedMenu);
-  res.send("updated");
+  res.send(`it is being updated! ✨`);
 });
 
 // delete an item from the database
@@ -69,24 +69,9 @@ router.delete("/:id", (req, res) => {
       );
   }
   let itemToBeDeleted = currentMenu.find((item) => item.id === id);
-  console.log(itemToBeDeleted);
-  let adjustMenu = currentMenu.filter((item) => item.id !== id);
+  let adjustMenu = currentMenu.filter((item) => item.id != id);
   saveMenu(adjustMenu);
   res.send(`${itemToBeDeleted.title} has been deleted! 👌`);
 });
-
-/*
-  if (!doesMenuExist(id)) {
-    res.status(404).send("does not exists.");
-  }
-  */
-/* Delete the menu with ID from currentMenu */
-//saveMenu();
-
-/* const { id } = req.params;
-  menu = menu.filter((item) => item.id !== id);
-  res.send(`${newItem.title} has been deleted! 👌`); */
-
-//});
 
 export default router;
