@@ -13,17 +13,21 @@ Content-Type: application/json
 
 ### 
 
-GET http://localhost:3000/api/menu:id
+GET http://localhost:3000/api/menu/HBTQt
+// the id above is the first item in data (cheeseburger)
 
 ###
-PUT http://localhost:3000/api/menu/1c44beb1-f20a-484d-ad93-ad3aa4798651
+PUT http://localhost:3000/api/menu
+Content-Type: application/json
 
   {
     "category": "Burger",
     "title": "New York Buffalo Burger",
     "description": "No ingredients",
-    "price": 999,
+    "price": 799,
+    "id": "NJP04"
   }
 
 ###
-DELETE http://localhost:3000/api/menu/:id
+DELETE http://localhost:3000/api/menu/ne6OD
+// id should be updated in the link before sending a request
