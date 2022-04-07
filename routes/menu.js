@@ -1,6 +1,5 @@
 import express from "express";
-import fs from "fs";
-import { readFile, writeFile } from "fs/promises";
+import { getMenu, saveMenu, doesMenuExist } from "../helperFunctions/helper.js";
 import { v4 as uuidv4 } from "uuid";
 
 // export const menu = JSON.parse(
@@ -39,12 +38,12 @@ router.put("/:id", (req, res) => {
     if (item.id == id) {
       return req.body;
     }
-    return item;
   });
   saveMenu(menuToBeAdjusted);
   // req.body;
   // req.params.id;
 });
+
 /*
 // delete an item from the database  *** "error": "Assignment to constant variable."
 router.delete("/:id", (req, res) => {
@@ -63,31 +62,3 @@ router.delete("/:id", (req, res) => {
 //});
 
 export default router;
-
-function getMenu() {
-  let menuData = fs.readFileSync("./menuData.json");
-  let menu = JSON.parse(menuData);
-  return menu;
-}
-
-function saveMenu(updatedMenu) {
-  fs.writeFileSync(
-    "./menuData.json",
-    JSON.stringify(updatedMenu, null, 2),
-    (err) => {
-      if (err) {
-        console.error(err);
-      }
-    }
-  );
-}
-
-function doesMenuExist(id) {
-  let currentMenu = getMenu();
-  let foundMenu = currentMenu.find(() => {});
-  if (foundMenu) {
-    return true;
-  } else {
-    return false;
-  }
-}
