@@ -1,10 +1,6 @@
 import express from "express";
 import { getMenu, saveMenu, doesMenuExist } from "../helperFunctions/helper.js";
-import { v4 as uuidv4 } from "uuid";
-
-// export const menu = JSON.parse(
-//   await readFile(new URL("../menuData.json", import.meta.url))
-// );
+import { nanoid } from "nanoid";
 
 const router = express.Router();
 
@@ -15,44 +11,76 @@ router.get("/", (req, res) => res.send(getMenu()));
 router.post("/", (req, res) => {
   let menuTobeUpdated = getMenu();
   const newItem = req.body;
-  const newItemWithId = { ...newItem, id: uuidv4() };
+  const newItemWithId = {
+    ...newItem,
+    id: nanoid(5),
+  };
   menuTobeUpdated.push(newItemWithId);
   saveMenu(menuTobeUpdated);
   res.send(`${newItem.title} has been added! 👏`);
 });
 
-/*
 // retrieve an specific item from the database
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  //find
-  const item = menu.filter((item) => item.id === id);
+  let currentMenu = getMenu();
+  if (!doesMenuExist(id)) {
+    res
+      .status(404)
+      .send(
+        "The item does not exist... 💔 \nDouble check the ID and try again?"
+      );
+  }
+  let item = currentMenu.find((item) => item.id === id);
   res.send(item);
 });
-*/
 
-// update an item in the database ?
-router.put("/:id", (req, res) => {
-  const { id } = req.params;
-  let menuToBeAdjusted = getMenu().map((item) => {
-    if (item.id == id) {
+// update an item in the database
+router.put("/", (req, res) => {
+  const { id } = req.body;
+  let currentMenu = getMenu();
+  if (!doesMenuExist(id)) {
+    res
+      .status(404)
+      .send(
+        "The item does not exist... 💔 \nDouble check the ID and try again?"
+      );
+  }
+  let adjustedMenu = currentMenu.map((item) => {
+    if (item.id === id) {
       return req.body;
     }
+    return item;
   });
-  saveMenu(menuToBeAdjusted);
-  // req.body;
-  // req.params.id;
+  console.log(adjustedMenu);
+  saveMenu(adjustedMenu);
+  res.send("updated");
 });
 
-/*
-// delete an item from the database  *** "error": "Assignment to constant variable."
+// delete an item from the database
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
   let currentMenu = getMenu();
   if (!doesMenuExist(id)) {
+    res
+      .status(404)
+      .send(
+        "The item does not exist... 💔 \nDouble check the ID and try again?"
+      );
+  }
+  let itemToBeDeleted = currentMenu.find((item) => item.id === id);
+  console.log(itemToBeDeleted);
+  let adjustMenu = currentMenu.filter((item) => item.id !== id);
+  saveMenu(adjustMenu);
+  res.send(`${itemToBeDeleted.title} has been deleted! 👌`);
+});
+
+/*
+  if (!doesMenuExist(id)) {
     res.status(404).send("does not exists.");
   }
-  /* Delete the menu with ID from currentMenu */
+  */
+/* Delete the menu with ID from currentMenu */
 //saveMenu();
 
 /* const { id } = req.params;
