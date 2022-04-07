@@ -4,6 +4,24 @@ const Layout = () => {
   const [menu, setMenu] = useState([]);
 
   useEffect(() => {
+    /*
+    let menuToUpdate = {
+      category: "Ribs",
+      title: "Pork Ribs for One",
+      description:
+        "Half a slab of Atlanta Pork Ribs, Memphis Slaw & PLain Fries",
+      price: 500,
+      id: "7",
+    };
+
+    fetch("http://localhost:3000/api/menu/" + menuToUpdate.id, {
+      body: JSON.stringify(menuToUpdate),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+*/
+
     fetch("http://localhost:3000/api/menu")
       .then((response) => response.json())
       .then((jsonData) => {
