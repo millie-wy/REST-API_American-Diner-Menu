@@ -1,5 +1,4 @@
 import fs from "fs";
-import { readFile, writeFile } from "fs/promises";
 
 export function getMenu() {
   let menuData = fs.readFileSync("./menuData.json");
@@ -21,8 +20,10 @@ export function saveMenu(updatedMenu) {
 
 export function doesMenuExist(id) {
   let currentMenu = getMenu();
-  let foundMenu = currentMenu.find(() => {});
-  if (foundMenu) {
+  let item = currentMenu.find((item) => {
+    item.id === id;
+  });
+  if (item) {
     return true;
   } else {
     return false;
