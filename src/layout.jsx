@@ -5,6 +5,20 @@ const Layout = () => {
 
   useEffect(() => {
     /*
+    document.getElementById("get").addEventListener("click"), async () => {
+      let allUsers = await makeRequest("http://localhost:3000/api/menu/", "GET");
+      console.log(allUsers)
+    }
+
+    document.getElementById("save").addEventListener("click"), async () => {
+      let body = {
+        name: "Pelle", 
+        age: 32
+      }
+      let status = await makeRequest("http://localhost:3000/api/menu/", "POST", body);
+      console.log(status)
+    }
+
     let menuToUpdate = {
       category: "Ribs",
       title: "Pork Ribs for One",
@@ -72,3 +86,14 @@ ReactDOM.render(<Layout />, document.querySelector("#root"));
 
 // const root = createRoot(document.getElementById("root"));
 // root.render(<Layout />);
+
+const makeRequest = async (url, method, body) => {
+  let response = await fetch(url, {
+    method,
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return response.json();
+};
