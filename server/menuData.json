@@ -16,7 +16,7 @@
   {
     "category": "Burger",
     "title": "Texas Chilli Burger",
-    "description": "double Housemade Beef Patty, Double American Cheddar, Texas Beef Chilli, Jalapenos, Lettuce, Tomatoes, Sriracha Mayo, Brioche Bun",
+    "description": "Double Housemade Beef Patty, Double American Cheddar, Texas Beef Chilli, Jalapenos, Lettuce, Tomatoes, Sriracha Mayo, Brioche Bun",
     "price": 159,
     "id": "E0C4-"
   },
@@ -44,14 +44,14 @@
   {
     "category": "Ribs",
     "title": "Pork Ribs for One",
-    "description": "Half a slab of Atlanta Pork Ribs, Memphis Slaw & PLain Fries",
+    "description": "Half a slab of Atlanta Pork Ribs, Memphis Slaw & Plain Fries",
     "price": 269,
     "id": "u6dPn"
   },
   {
     "category": "Ribs",
     "title": "Port Ribs for Share",
-    "description": "Full slab of Atlanta Pork Ribs, Memphis Slaw & PLain Fries",
+    "description": "Full slab of Atlanta Pork Ribs, Memphis Slaw & Plain Fries",
     "price": 419,
     "id": "aSwvM"
   }
