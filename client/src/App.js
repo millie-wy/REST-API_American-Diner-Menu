@@ -29,7 +29,6 @@ function App() {
           </span>
         </h1>
       </div>
-
       <div className="menu-content">
         <div className="burger-section">
           <div className="section-heading">
@@ -37,23 +36,17 @@ function App() {
           </div>
           <div className="section-content">
             {menu.map((items) =>
-              items.map((item) => {
-                if (item.category === "Burger")
-                  return (
-                    <div
-                      key={item.id}
-                      style={{
-                        height: "200px",
-                        width: "200px",
-                        background: "skyblue",
-                      }}
-                    >
+              items.map((item) =>
+                item.category === "Burger" ? (
+                  <div className="menu-item" key={item.id}>
+                    <div className="menu-item-title">
                       <p>{item.title}</p>
-                      <p>{item.description}</p>
                       <p>{item.price}</p>
                     </div>
-                  );
-              })
+                    <p className="menu-item-description">{item.description}</p>
+                  </div>
+                ) : null
+              )
             )}
           </div>
         </div>
@@ -62,45 +55,70 @@ function App() {
           <div className="section-heading">
             <h2 className="heading-text">Steaks & Ribs</h2>
           </div>
-          <div></div>
+          <div className="section-content">
+            {menu.map((items) =>
+              items.map((item) =>
+                item.category === "Steak or Ribs" ? (
+                  <div className="menu-item" key={item.id}>
+                    <div className="menu-item-title">
+                      <p>{item.title}</p>
+                      <p>{item.price}</p>
+                    </div>
+                    <p className="menu-item-description">{item.description}</p>
+                  </div>
+                ) : null
+              )
+            )}
+          </div>
         </div>
         <div className="sections-right">
           <div className="sweets-section">
             <div className="section-heading">
               <h2 className="heading-text">Sweets</h2>
             </div>
-            <div></div>
+            <div className="section-content">
+              {menu.map((items) =>
+                items.map((item) =>
+                  item.category === "Sweets" ? (
+                    <div className="menu-item" key={item.id}>
+                      <div className="menu-item-title">
+                        <p>{item.title}</p>
+                        <p>{item.price}</p>
+                      </div>
+                      <p className="menu-item-description">
+                        {item.description}
+                      </p>
+                    </div>
+                  ) : null
+                )
+              )}
+            </div>
           </div>
           <div className="drinks-section">
             <div className="section-heading">
               <h2 className="heading-text">Drinks</h2>
             </div>
-            <div></div>
+            <div className="section-content">
+              {menu.map((items) =>
+                items.map((item) =>
+                  item.category === "Drinks" ? (
+                    <div className="menu-item" key={item.id}>
+                      <div className="menu-item-title">
+                        <p>{item.title}</p>
+                        <p>{item.price}</p>
+                      </div>
+                      <p className="menu-item-description">
+                        {item.description}
+                      </p>
+                    </div>
+                  ) : null
+                )
+              )}
+            </div>
           </div>
         </div>
       </div>
       {/* <button onClick={loadMenu}>Open Menu</button> */}
-      {menu.map((items) =>
-        items.map((item) => (
-          // if (item.category === "Burger") {
-          //   console.log(item.title, item.description, item.price);
-          <div
-            key={item.id}
-            style={{
-              height: "200px",
-              width: "200px",
-              background: "skyblue",
-            }}
-          >
-            <p>{item.title}</p>
-            <p>{item.description}</p>
-            <p>{item.price}</p>
-          </div>
-          // } else {
-          //   console.log("ELSE: " + item.title, item.description, item.price);
-          // }
-        ))
-      )}
     </div>
   );
 }

@@ -37,22 +37,78 @@
   {
     "category": "Burger",
     "title": "Chicken Burger",
-    "description": "Coated Rib Fillet Steak deep fried, Mushroom Cheese sauce, Memphis Slaw, Brioche Bun",
+    "description": "Coated Rib Fillet Steak deep fried, Mushroom Cheese Sauce, Memphis Slaw, Brioche Bun",
     "price": 149,
     "id": "PFb8x"
   },
   {
-    "category": "Ribs",
-    "title": "Pork Ribs for One",
-    "description": "Half a slab of Atlanta Pork Ribs, Memphis Slaw & Plain Fries",
-    "price": 269,
+    "category": "Steak or Ribs",
+    "title": "Rib Eye Steak",
+    "description": "Succulent 8-10oz Rib Eye Steak seasoned and char grilled. Served with Fried Onion and Fried Mushrooms",
+    "price": 279,
     "id": "u6dPn"
   },
   {
-    "category": "Ribs",
+    "category": "Steak or Ribs",
+    "title": "Lamb Chops",
+    "description": "Four lamb chops pieces marinated in green herbs and spices served with Secret Mint Sauce",
+    "price": 329,
+    "id": "b03k1"
+  },
+  {
+    "category": "Steak or Ribs",
+    "title": "Pork Ribs for One",
+    "description": "Half a slab of Atlanta Pork Ribs, Memphis Slaw & Plain Fries",
+    "price": 269,
+    "id": "fm2dt"
+  },
+  {
+    "category": "Steak or Ribs",
     "title": "Port Ribs for Share",
     "description": "Full slab of Atlanta Pork Ribs, Memphis Slaw & Plain Fries",
     "price": 419,
     "id": "aSwvM"
+  },
+  {
+    "category": "Sweets",
+    "title": "Grandma's Apple Pie",
+    "description": "Served with Whipped Cream",
+    "price": 75,
+    "id": "safi4"
+  },
+  {
+    "category": "Sweets",
+    "title": "Hot Fudge Sundae",
+    "description": "Served with Nuts, Whipped Cream and a Cherry",
+    "price": 65,
+    "id": "pe24d"
+  },
+  {
+    "category": "Sweets",
+    "title": "Ice Cream (Two Scoops)",
+    "description": "Vanilla, Chocolate, Cookie & Cream, Strawberry",
+    "price": 35,
+    "id": "f82jv"
+  },
+  {
+    "category": "Drinks",
+    "title": "Sodas",
+    "description": "A&W Root Beer, A&W Cream Soda, Cherry Cola, Grape Fanta, Dr Pepper, Mountain Dew",
+    "price": 35,
+    "id": "g9jg8"
+  },
+  {
+    "category": "Drinks",
+    "title": "Milkshakes",
+    "description": "Hershey's Chocolate, Creamy Vanilla, Key Lime, Cookie & Cream, Strawberries & Cream, Salted Caramel",
+    "price": 65,
+    "id": "nv2b0"
+  },
+  {
+    "category": "Drinks",
+    "title": "Coffee / Tea",
+    "description": "",
+    "price": 25,
+    "id": "va81n"
   }
 ]
