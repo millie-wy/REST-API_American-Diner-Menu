@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import bg from "./images/background.svg";
+import "./app.css";
 
 function App() {
   const [menu, setMenu] = useState([]);
+
   useEffect(() => {
     fetch("/api/menu")
       .then((response) => response.json())
@@ -10,20 +11,54 @@ function App() {
         setMenu([...menu, jsonData]);
       })
       .catch((err) => console.log(err));
-  }, [menu]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return menu.length === 0 ? (
-    <h1>nothing to show ????</h1>
+    <h1>Loading</h1>
   ) : (
-    <div
-      style={{
-        background: "yellow",
-        height: "200px",
-        width: "500px",
-      }}
-    >
-      <h1>HELLO FROM REACT</h1>
-      <img src={bg} alt="" />
+    <div id="menu">
+      <div className="stripe s-top" />
+      <div className="stripe s-bottom" />
+      <div className="logo">
+        <h1 className="brand">
+          American
+          <br />
+          <span className="star">
+            ★<span className="diner">Diner</span>★
+          </span>
+        </h1>
+      </div>
+
+      <div className="menu-content">
+        <div className="burger-section">
+          <div className="section-heading">
+            <h2 className="heading-text">Burgers</h2>
+          </div>
+          <div className="section-content"></div>
+        </div>
+
+        <div className="steak-section">
+          <div className="section-heading">
+            <h2 className="heading-text">Steaks & Ribs</h2>
+          </div>
+          <div></div>
+        </div>
+        <div class="sections-right">
+          <div className="sweets-section">
+            <div className="section-heading">
+              <h2 className="heading-text">Sweets</h2>
+            </div>
+            <div></div>
+          </div>
+          <div className="drinks-section">
+            <div className="section-heading">
+              <h2 className="heading-text">Drinks</h2>
+            </div>
+            <div></div>
+          </div>
+        </div>
+      </div>
       {/* <button onClick={loadMenu}>Open Menu</button> */}
       {menu.map((items) =>
         items.map((item) => (
@@ -46,7 +81,6 @@ function App() {
           // }
         ))
       )}
-      <p>End?</p>
     </div>
   );
 }
