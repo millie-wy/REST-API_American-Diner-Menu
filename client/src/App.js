@@ -35,7 +35,27 @@ function App() {
           <div className="section-heading">
             <h2 className="heading-text">Burgers</h2>
           </div>
-          <div className="section-content"></div>
+          <div className="section-content">
+            {menu.map((items) =>
+              items.map((item) => {
+                if (item.category === "Burger")
+                  return (
+                    <div
+                      key={item.id}
+                      style={{
+                        height: "200px",
+                        width: "200px",
+                        background: "skyblue",
+                      }}
+                    >
+                      <p>{item.title}</p>
+                      <p>{item.description}</p>
+                      <p>{item.price}</p>
+                    </div>
+                  );
+              })
+            )}
+          </div>
         </div>
 
         <div className="steak-section">
@@ -44,7 +64,7 @@ function App() {
           </div>
           <div></div>
         </div>
-        <div class="sections-right">
+        <div className="sections-right">
           <div className="sweets-section">
             <div className="section-heading">
               <h2 className="heading-text">Sweets</h2>
