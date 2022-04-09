@@ -35,7 +35,7 @@ const SingleMenuItem = () => {
       id: id,
     };
     console.log(body);
-    makeRequest(`/api/menu/`, "PUT", body);
+    makeRequest("/api/menu/", "PUT", body);
 
     setTimeout(() => navigate("/"), 2000);
   };

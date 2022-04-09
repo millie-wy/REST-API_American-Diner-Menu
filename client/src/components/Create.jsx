@@ -1,7 +1,23 @@
 import { useState } from "react";
+import { makeRequest } from "../helper";
 
 const Create = () => {
   const [category, setCategory] = useState("");
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState(0);
+  const [description, setDescription] = useState("");
+
+  const addItem = () => {
+    let newItem = {
+      category: category,
+      title: title,
+      description: description,
+      price: price,
+    };
+
+    let result = makeRequest("/api/menu", "POST", newItem);
+    alert(result);
+  };
 
   return (
     <div style={rootStyle}>
@@ -65,12 +81,24 @@ const Create = () => {
         >
           <label style={labelStyle}>
             Title <br />
-            <input style={inputStyle} type="text" name="title" required />
+            <input
+              style={inputStyle}
+              type="text"
+              name="title"
+              required
+              onChange={(e) => setTitle(e.currentTarget.value)}
+            />
           </label>
           <label style={labelStyle}>
             Price
             <br />
-            <input style={inputStyle} type="number" name="price" required />
+            <input
+              style={inputStyle}
+              type="number"
+              name="price"
+              required
+              onChange={(e) => setPrice(e.currentTarget.value)}
+            />
           </label>
         </div>
         <div
@@ -88,10 +116,11 @@ const Create = () => {
               type="text"
               name="description"
               required
+              onChange={(e) => setDescription(e.currentTarget.value)}
             />
           </label>
         </div>
-        <button style={buttonStyle} type="submit">
+        <button style={buttonStyle} type="submit" onClick={() => addItem()}>
           Submit
         </button>
       </form>
@@ -119,14 +148,6 @@ const headerStyle = {
   width: "100%",
   height: "55px",
   color: "#eeeeee",
-};
-
-const containerStyle = {
-  margin: "auto",
-  textAlign: "left",
-  display: "flex",
-  justifyContent: "center",
-  gap: "20px",
 };
 
 const radioContainerStyle = {
