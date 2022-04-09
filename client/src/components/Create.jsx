@@ -2,7 +2,10 @@ const Create = () => {
   return (
     <div style={rootStyle}>
       <div style={headerStyle}>
-        <h1 style={{ lineHeight: "20px" }}>★ Create new item ★</h1>
+        <h1 style={{ lineHeight: "25px" }}>
+          <span style={{ color: "#0e2636" }}>★</span> Create new item
+          <span style={{ color: "#0e2636" }}> ★</span>
+        </h1>
       </div>
       <form style={formStyle}>
         <div
@@ -26,7 +29,8 @@ const Create = () => {
         <label style={labelStyle}>
           Description <br />
           <textarea
-            style={inputStyle}
+            rows="4"
+            style={{ ...inputStyle, width: "300px" }}
             type="text"
             name="description"
             required
@@ -43,20 +47,20 @@ const Create = () => {
 const rootStyle = {
   margin: "auto",
   marginTop: "80px",
-  textAlign: "center",
   display: "flex",
   flexDirection: "column",
   border: "solid #2b5d7e 8px",
   borderRadius: "10px",
   backgroundColor: "#eddbc5",
-  width: "400px",
+  width: "600px",
 };
 
 const headerStyle = {
   fontFamily: "Angkor",
   textTransform: "uppercase",
+  textAlign: "center",
   fontSize: "12px",
-  background: "#2b5d7e",
+  background: "#aa443c",
   width: "100%",
   height: "55px",
   color: "#eeeeee",
@@ -74,27 +78,30 @@ const labelStyle = {
   fontSize: "20px",
   marginTop: "20px",
   fontFamily: "Bebas Neue",
+  fontWeight: "unset",
 };
 
 const inputStyle = {
   fontFamily: "Dosis",
   fontSize: "15px",
-  width: "100%",
+  width: "135px",
   border: "none",
   borderRadius: "5px",
   minHeight: "25px",
+  padding: "5px",
 };
 
 const buttonStyle = {
   fontFamily: "Bebas Neue",
   margin: "20px auto",
   width: "100px",
-  backgroundColor: "#aa443c",
+  backgroundColor: "#2b5d7e",
   border: "none",
   borderRadius: "5px",
   height: "30px",
   color: "#eee",
   fontSize: "18px",
+  cursor: "pointer",
 };
 
 export default Create;
