@@ -1,6 +1,6 @@
-import { makeRequest } from "../helper.js";
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { makeRequest } from "../helper.js";
 
 const SingleMenuItem = () => {
   const location = useLocation();
@@ -15,11 +15,6 @@ const SingleMenuItem = () => {
 
   const [isEditing, setIsEditing] = useState(false);
 
-  const [isBurgers, setIsBurgers] = useState(false);
-  const [isSteaks, setIsSteaks] = useState(false);
-  const [isSweets, setIsSweets] = useState(false);
-  const [isDrinks, setIsDrinks] = useState(false);
-
   useEffect(() => {
     let response = makeRequest(`/api/menu/${id}`, "GET");
     response.then((jsonData) => setItem(jsonData));
@@ -28,63 +23,26 @@ const SingleMenuItem = () => {
     setPrice(item.price);
     setDescription(item.description);
     setCategory(item.category);
-
-    if (category === "Burgers") {
-      setIsBurgers(true);
-    } else if (category === "Steak or Ribs") {
-      setIsSteaks(true);
-    } else if (category === "Sweets") {
-      setIsSweets(true);
-    } else if (category === "Drinks") {
-      setIsDrinks(true);
-    }
-  }, [category, id, item.category, item.description, item.price, item.title]);
-  //console.log(category);
-
-  const selectedBurgers = (e) => {
-    setCategory("Burgers");
-    setIsBurgers(true);
-    setIsSteaks(false);
-    setIsDrinks(false);
-    setIsSweets(false);
-  };
-
-  const selectedSteaks = (e) => {
-    setCategory("Steak or Ribs");
-    setIsBurgers(false);
-    setIsSteaks(true);
-    setIsDrinks(false);
-    setIsSweets(false);
-  };
-
-  const selectedSweets = (e) => {
-    setCategory("Sweets");
-    setIsBurgers(false);
-    setIsSteaks(false);
-    setIsDrinks(false);
-    setIsSweets(true);
-  };
-  const selectedDrinks = (e) => {
-    setCategory("Drinks");
-    setIsBurgers(false);
-    setIsSteaks(false);
-    setIsDrinks(true);
-    setIsSweets(false);
-  };
+  }, [id, item.category, item.description, item.price, item.title]);
 
   const updateItem = () => {
     setIsEditing(false);
-    let edit = {
+    let body = {
       category: category,
       title: title,
       description: description,
       price: Number(price),
       id: id,
     };
-    console.log(edit);
-    makeRequest(`/api/menu/`, "PUT", edit);
+    console.log(body);
+    makeRequest(`/api/menu/`, "PUT", body);
 
     setTimeout(() => navigate("/"), 2000);
+  };
+
+  const deleteItem = () => {
+    let status = makeRequest(`/api/menu/${id}`, "DELETE");
+    alert(status);
   };
 
   return (
@@ -95,47 +53,52 @@ const SingleMenuItem = () => {
           <span style={{ color: "#0e2636" }}> ★</span>
         </h1>
       </div>
-      <div style={{ ...containerStyle, height: "80px" }}>
-        <div>
-          <input
-            type="radio"
-            name="burgers"
-            value="Burgers"
-            checked={isBurgers}
-            onChange={(e) => selectedBurgers()}
-          />
-          <label name="burgers">Burgers</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            name="steaks-or-ribs"
-            value="Steak or Ribs"
-            checked={isSteaks}
-            onChange={(e) => selectedSteaks()}
-          />
-          <label name="burgers">Steak or Ribs</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            name="sweets"
-            value="Sweets"
-            checked={isSweets}
-            onChange={(e) => selectedSweets()}
-          />
-          <label name="burgers">Sweets</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            name="drinks"
-            value="Drinks"
-            checked={isDrinks}
-            onChange={(e) => selectedDrinks()}
-          />
-          <label name="burgers">Drinks</label>
-        </div>
+      <div style={radioContainerStyle}>
+        <input
+          type="radio"
+          name="category"
+          value="Burgers"
+          checked={category === "Burgers"}
+          disabled={!isEditing}
+          onChange={(e) => setCategory(e.currentTarget.value)}
+        />
+        <label style={radioLabelStyle} name="burgers">
+          Burgers
+        </label>
+
+        <input
+          type="radio"
+          name="category"
+          value="Steak or Ribs"
+          checked={category === "Steak or Ribs"}
+          disabled={!isEditing}
+          onChange={(e) => setCategory(e.currentTarget.value)}
+        />
+        <label style={radioLabelStyle} name="steak">
+          Steak or Ribs
+        </label>
+        <input
+          type="radio"
+          name="category"
+          value="Sweets"
+          checked={category === "Sweets"}
+          disabled={!isEditing}
+          onChange={(e) => setCategory(e.currentTarget.value)}
+        />
+        <label style={radioLabelStyle} name="sweets">
+          Sweets
+        </label>
+        <input
+          type="radio"
+          name="category"
+          value="Drinks"
+          checked={category === "Drinks"}
+          disabled={!isEditing}
+          onChange={(e) => setCategory(e.currentTarget.value)}
+        />
+        <label style={radioLabelStyle} name="drinks">
+          Drinks
+        </label>
       </div>
       <div style={{ ...containerStyle, height: "80px" }}>
         <h6 style={labelStyle}>
@@ -199,6 +162,7 @@ const SingleMenuItem = () => {
         <button
           style={{ ...buttonStyle, backgroundColor: "#aa443c" }}
           type="button"
+          onClick={() => deleteItem()}
         >
           Delete
         </button>
@@ -227,6 +191,19 @@ const headerStyle = {
   width: "100%",
   height: "55px",
   color: "#eeeeee",
+};
+
+const radioContainerStyle = {
+  fontFamily: "Bebas Neue",
+  fontSize: "20px",
+  margin: "20px auto 10px auto",
+  textAlign: "left",
+  display: "flex",
+  justifyContent: "center",
+};
+
+const radioLabelStyle = {
+  margin: "0 10px 0 5px",
 };
 
 const containerStyle = {

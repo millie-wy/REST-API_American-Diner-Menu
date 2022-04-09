@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 const Create = () => {
+  const [category, setCategory] = useState("");
+
   return (
     <div style={rootStyle}>
       <div style={headerStyle}>
@@ -8,6 +12,49 @@ const Create = () => {
         </h1>
       </div>
       <form style={formStyle}>
+        <div style={radioContainerStyle}>
+          <input
+            type="radio"
+            name="category"
+            value="Burgers"
+            required
+            onChange={(e) => setCategory(e.currentTarget.value)}
+          />
+          <label style={radioLabelStyle} name="burgers">
+            Burgers
+          </label>
+
+          <input
+            type="radio"
+            name="category"
+            value="Steak or Ribs"
+            required
+            onChange={(e) => setCategory(e.currentTarget.value)}
+          />
+          <label style={radioLabelStyle} name="steak">
+            Steak or Ribs
+          </label>
+          <input
+            type="radio"
+            name="category"
+            value="Sweets"
+            required
+            onChange={(e) => setCategory(e.currentTarget.value)}
+          />
+          <label style={radioLabelStyle} name="sweets">
+            Sweets
+          </label>
+          <input
+            type="radio"
+            name="category"
+            value="Drinks"
+            required
+            onChange={(e) => setCategory(e.currentTarget.value)}
+          />
+          <label style={radioLabelStyle} name="drinks">
+            Drinks
+          </label>
+        </div>
         <div
           style={{
             display: "flex",
@@ -26,16 +73,24 @@ const Create = () => {
             <input style={inputStyle} type="number" name="price" required />
           </label>
         </div>
-        <label style={labelStyle}>
-          Description <br />
-          <textarea
-            rows="4"
-            style={{ ...inputStyle, width: "300px" }}
-            type="text"
-            name="description"
-            required
-          />
-        </label>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            textAlign: "left",
+          }}
+        >
+          <label style={labelStyle}>
+            Description <br />
+            <textarea
+              rows="4"
+              style={{ ...inputStyle, width: "300px" }}
+              type="text"
+              name="description"
+              required
+            />
+          </label>
+        </div>
         <button style={buttonStyle} type="submit">
           Submit
         </button>
@@ -64,6 +119,27 @@ const headerStyle = {
   width: "100%",
   height: "55px",
   color: "#eeeeee",
+};
+
+const containerStyle = {
+  margin: "auto",
+  textAlign: "left",
+  display: "flex",
+  justifyContent: "center",
+  gap: "20px",
+};
+
+const radioContainerStyle = {
+  fontFamily: "Bebas Neue",
+  fontSize: "20px",
+  margin: "20px auto 10px auto",
+  textAlign: "left",
+  display: "flex",
+  justifyContent: "center",
+};
+
+const radioLabelStyle = {
+  margin: "0 10px 0 5px",
 };
 
 const formStyle = {
