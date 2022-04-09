@@ -153,3 +153,12 @@
   margin-top: -8px;
   margin-bottom: 10px;
 }
+
+.link {
+  text-decoration: none;
+  color: #0e2636;
+}
+
+.link:hover {
+  color: #aa443c;
+}

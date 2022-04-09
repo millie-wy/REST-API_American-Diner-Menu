@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./menu.css";
+import { Link } from "react-router-dom";
 
 function App() {
   const [menu, setMenu] = useState([]);
@@ -40,7 +41,9 @@ function App() {
                 item.category === "Burger" ? (
                   <div className="menu-item" key={item.id}>
                     <div className="menu-item-title">
-                      <p>{item.title}</p>
+                      <Link className="link" to={`/menu/${item.id}`}>
+                        <p>{item.title}</p>
+                      </Link>
                       <p>{item.price}</p>
                     </div>
                     <p className="menu-item-description">{item.description}</p>
@@ -61,7 +64,9 @@ function App() {
                 item.category === "Steak or Ribs" ? (
                   <div className="menu-item" key={item.id}>
                     <div className="menu-item-title">
-                      <p>{item.title}</p>
+                      <Link className="link" to={`/menu/${item.id}`}>
+                        <p>{item.title}</p>
+                      </Link>
                       <p>{item.price}</p>
                     </div>
                     <p className="menu-item-description">{item.description}</p>
@@ -82,7 +87,9 @@ function App() {
                   item.category === "Sweets" ? (
                     <div className="menu-item" key={item.id}>
                       <div className="menu-item-title">
-                        <p>{item.title}</p>
+                        <Link className="link" to={`/menu/${item.id}`}>
+                          <p>{item.title}</p>
+                        </Link>
                         <p>{item.price}</p>
                       </div>
                       <p className="menu-item-description">
@@ -104,7 +111,9 @@ function App() {
                   item.category === "Drinks" ? (
                     <div className="menu-item" key={item.id}>
                       <div className="menu-item-title">
-                        <p>{item.title}</p>
+                        <Link className="link" to={`/menu/${item.id}`}>
+                          <p>{item.title}</p>
+                        </Link>
                         <p>{item.price}</p>
                       </div>
                       <p className="menu-item-description">
