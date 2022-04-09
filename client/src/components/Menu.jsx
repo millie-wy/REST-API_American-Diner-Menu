@@ -1,22 +1,18 @@
 import { useState, useEffect } from "react";
 import "./menu.css";
 import { Link } from "react-router-dom";
+import { makeRequest } from "../helper.js";
 
 function App() {
   const [menu, setMenu] = useState([]);
 
   useEffect(() => {
-    fetch("/api/menu")
-      .then((response) => response.json())
-      .then((jsonData) => {
-        setMenu([...menu, jsonData]);
-      })
-      .catch((err) => console.log(err));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    let response = makeRequest("/api/menu", "GET");
+    response.then((jsonData) => setMenu([jsonData]));
   }, []);
 
   return menu.length === 0 ? (
-    <h1>Loading</h1>
+    <h1 style={{ color: "#eee", textAlign: "center" }}>Loading...</h1>
   ) : (
     <div id="menu">
       <div className="stripe s-top" />
@@ -38,10 +34,14 @@ function App() {
           <div className="section-content">
             {menu.map((items) =>
               items.map((item) =>
-                item.category === "Burger" ? (
+                item.category === "Burgers" ? (
                   <div className="menu-item" key={item.id}>
                     <div className="menu-item-title">
-                      <Link className="link" to={`/menu/${item.id}`}>
+                      <Link
+                        className="link"
+                        state={item.id}
+                        to={`/menu/${item.id}`}
+                      >
                         <p>{item.title}</p>
                       </Link>
                       <p>{item.price}</p>
@@ -64,7 +64,11 @@ function App() {
                 item.category === "Steak or Ribs" ? (
                   <div className="menu-item" key={item.id}>
                     <div className="menu-item-title">
-                      <Link className="link" to={`/menu/${item.id}`}>
+                      <Link
+                        className="link"
+                        state={item.id}
+                        to={`/menu/${item.id}`}
+                      >
                         <p>{item.title}</p>
                       </Link>
                       <p>{item.price}</p>
@@ -87,7 +91,11 @@ function App() {
                   item.category === "Sweets" ? (
                     <div className="menu-item" key={item.id}>
                       <div className="menu-item-title">
-                        <Link className="link" to={`/menu/${item.id}`}>
+                        <Link
+                          className="link"
+                          state={item.id}
+                          to={`/menu/${item.id}`}
+                        >
                           <p>{item.title}</p>
                         </Link>
                         <p>{item.price}</p>
@@ -111,7 +119,11 @@ function App() {
                   item.category === "Drinks" ? (
                     <div className="menu-item" key={item.id}>
                       <div className="menu-item-title">
-                        <Link className="link" to={`/menu/${item.id}`}>
+                        <Link
+                          className="link"
+                          state={item.id}
+                          to={`/menu/${item.id}`}
+                        >
                           <p>{item.title}</p>
                         </Link>
                         <p>{item.price}</p>
@@ -127,7 +139,6 @@ function App() {
           </div>
         </div>
       </div>
-      {/* <button onClick={loadMenu}>Open Menu</button> */}
     </div>
   );
 }
