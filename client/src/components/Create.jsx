@@ -7,7 +7,8 @@ const Create = () => {
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
 
-  const addItem = () => {
+  const addItem = async (e) => {
+    e.preventDefault();
     let newItem = {
       category: category,
       title: title,
@@ -15,8 +16,8 @@ const Create = () => {
       price: price,
     };
 
-    let result = makeRequest("/api/menu", "POST", newItem);
-    alert(result);
+    let status = await makeRequest("/api/menu", "POST", newItem);
+    alert(status);
   };
 
   return (
@@ -27,7 +28,7 @@ const Create = () => {
           <span style={{ color: "#0e2636" }}> ★</span>
         </h1>
       </div>
-      <form style={formStyle}>
+      <form style={formStyle} onSubmit={addItem}>
         <div style={radioContainerStyle}>
           <input
             type="radio"
@@ -120,7 +121,7 @@ const Create = () => {
             />
           </label>
         </div>
-        <button style={buttonStyle} type="submit" onClick={() => addItem()}>
+        <button style={buttonStyle} type="submit">
           Submit
         </button>
       </form>
