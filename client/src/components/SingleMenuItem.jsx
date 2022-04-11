@@ -25,7 +25,7 @@ const SingleMenuItem = () => {
     setCategory(item.category);
   }, [id, item.category, item.description, item.price, item.title]);
 
-  const updateItem = () => {
+  const updateItem = async () => {
     setIsEditing(false);
     let body = {
       category: category,
@@ -34,15 +34,16 @@ const SingleMenuItem = () => {
       price: Number(price),
       id: id,
     };
-    console.log(body);
-    makeRequest("/api/menu/", "PUT", body);
 
+    let status = await makeRequest("/api/menu/", "PUT", body);
+    alert(status);
     setTimeout(() => navigate("/"), 2000);
   };
 
-  const deleteItem = () => {
-    let status = makeRequest(`/api/menu/${id}`, "DELETE");
+  const deleteItem = async () => {
+    let status = await makeRequest(`/api/menu/${id}`, "DELETE");
     alert(status);
+    setTimeout(() => navigate("/"), 2000);
   };
 
   return (
