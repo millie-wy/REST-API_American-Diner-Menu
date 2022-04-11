@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
   };
   menuTobeUpdated.push(newItemWithId);
   saveMenu(menuTobeUpdated);
-  res.json(`${newItem.title} has been added! 👏`);
+  res.json(`"${newItem.title}" has been added! 👏`);
 });
 
 // retrieve an specific item from the database
@@ -37,7 +37,7 @@ router.get("/:id", (req, res) => {
 
 // update an item in the database
 router.put("/", (req, res) => {
-  const { id } = req.body;
+  const { id, title } = req.body;
   let currentMenu = getMenu();
   if (!doesMenuExist(id)) {
     res
@@ -54,7 +54,7 @@ router.put("/", (req, res) => {
     return item;
   });
   saveMenu(adjustedMenu);
-  res.json(`The item has been updated! ✨`);
+  res.json(`"${title}" has been updated! ✨`);
 });
 
 // delete an item from the database
@@ -71,7 +71,7 @@ router.delete("/:id", (req, res) => {
   let itemToBeDeleted = currentMenu.find((item) => item.id === id);
   let adjustMenu = currentMenu.filter((item) => item.id != id);
   saveMenu(adjustMenu);
-  res.json(`${itemToBeDeleted.title} has been deleted! 👌`);
+  res.json(`"${itemToBeDeleted.title}" has been deleted! 👌`);
 });
 
 export default router;
