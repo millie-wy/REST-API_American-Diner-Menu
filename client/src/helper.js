@@ -6,5 +6,5 @@ export const makeRequest = async (url, method, body) => {
       "Content-Type": "application/json",
     },
   });
-  return response.json();
+  return await response.json();
 };
