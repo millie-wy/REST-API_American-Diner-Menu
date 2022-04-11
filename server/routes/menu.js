@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
   };
   menuTobeUpdated.push(newItemWithId);
   saveMenu(menuTobeUpdated);
-  res.send(`${newItem.title} has been added! 👏`);
+  res.json(`${newItem.title} has been added! 👏`);
 });
 
 // retrieve an specific item from the database
@@ -54,7 +54,7 @@ router.put("/", (req, res) => {
     return item;
   });
   saveMenu(adjustedMenu);
-  res.send(`The item has been updated! ✨`);
+  res.json(`The item has been updated! ✨`);
 });
 
 // delete an item from the database
@@ -71,7 +71,7 @@ router.delete("/:id", (req, res) => {
   let itemToBeDeleted = currentMenu.find((item) => item.id === id);
   let adjustMenu = currentMenu.filter((item) => item.id != id);
   saveMenu(adjustMenu);
-  res.send(`${itemToBeDeleted.title} has been deleted! 👌`);
+  res.json(`${itemToBeDeleted.title} has been deleted! 👌`);
 });
 
 export default router;
