@@ -9,10 +9,10 @@ app.use(express.json());
 
 app.use("/api/menu", menuRoutes);
 
-// handling error...?
+// global error handling
 app.use((err, req, res, next) => {
   console.log(err);
-  res.status(404).send({
+  res.status(err.statusCode || 500).send({
     error: err.message,
   });
 });
