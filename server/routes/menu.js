@@ -54,7 +54,7 @@ router.put("/", (req, res) => {
     return item;
   });
   saveMenu(adjustedMenu);
-  res.send(`it is being updated! ✨`);
+  res.send(`The item has been updated! ✨`);
 });
 
 // delete an item from the database
