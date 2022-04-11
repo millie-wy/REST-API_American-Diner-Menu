@@ -14,6 +14,8 @@ const SingleMenuItem = () => {
   const [description, setDescription] = useState("");
 
   const [isEditing, setIsEditing] = useState(false);
+  const [putOrDeleteStatus, setPutOrDeleteStatus] = useState("");
+  const [isHiddingForm, setIsHiddingForm] = useState(false);
 
   useEffect(() => {
     let response = makeRequest(`/api/menu/${id}`, "GET");
@@ -36,14 +38,22 @@ const SingleMenuItem = () => {
     };
 
     let status = await makeRequest("/api/menu/", "PUT", body);
-    alert(status);
-    setTimeout(() => navigate("/"), 2000);
+    showLoadingEffect(status);
   };
 
   const deleteItem = async () => {
     let status = await makeRequest(`/api/menu/${id}`, "DELETE");
-    alert(status);
-    setTimeout(() => navigate("/"), 2000);
+    showLoadingEffect(status);
+  };
+
+  const showLoadingEffect = (status) => {
+    setIsHiddingForm(true);
+    setPutOrDeleteStatus(status);
+    setTimeout(() => {
+      setIsHiddingForm(false);
+      setPutOrDeleteStatus("");
+      navigate("/");
+    }, 2000);
   };
 
   return (
@@ -54,120 +64,138 @@ const SingleMenuItem = () => {
           <span style={{ color: "#0e2636" }}> ★</span>
         </h1>
       </div>
-      <div style={radioContainerStyle}>
-        <input
-          type="radio"
-          name="category"
-          value="Burgers"
-          checked={category === "Burgers"}
-          disabled={!isEditing}
-          onChange={(e) => setCategory(e.currentTarget.value)}
-        />
-        <label style={radioLabelStyle} name="burgers">
-          Burgers
-        </label>
 
-        <input
-          type="radio"
-          name="category"
-          value="Steak or Ribs"
-          checked={category === "Steak or Ribs"}
-          disabled={!isEditing}
-          onChange={(e) => setCategory(e.currentTarget.value)}
-        />
-        <label style={radioLabelStyle} name="steak">
-          Steak or Ribs
-        </label>
-        <input
-          type="radio"
-          name="category"
-          value="Sweets"
-          checked={category === "Sweets"}
-          disabled={!isEditing}
-          onChange={(e) => setCategory(e.currentTarget.value)}
-        />
-        <label style={radioLabelStyle} name="sweets">
-          Sweets
-        </label>
-        <input
-          type="radio"
-          name="category"
-          value="Drinks"
-          checked={category === "Drinks"}
-          disabled={!isEditing}
-          onChange={(e) => setCategory(e.currentTarget.value)}
-        />
-        <label style={radioLabelStyle} name="drinks">
-          Drinks
-        </label>
-      </div>
-      <div style={{ ...containerStyle, height: "80px" }}>
-        <h6 style={labelStyle}>
-          Title <br />
-          <input
-            style={inputStyle}
-            type="text"
-            name="title"
-            disabled={!isEditing}
-            value={title || ""}
-            onChange={(e) => setTitle(e.currentTarget.value)}
-          />
-        </h6>
+      {isHiddingForm ? (
+        <div style={{ height: "340px", textAlign: "center" }}>
+          <h2 style={{ marginTop: "130px", lineHeight: "20px" }}>
+            {putOrDeleteStatus}
+          </h2>
+          <h4 style={{ fontWeight: "unset", color: "#a38764" }}>
+            You will be directed to the menu...
+          </h4>
+        </div>
+      ) : (
+        <div>
+          <div style={radioContainerStyle}>
+            <input
+              type="radio"
+              name="category"
+              value="Burgers"
+              checked={category === "Burgers"}
+              disabled={!isEditing}
+              onChange={(e) => setCategory(e.currentTarget.value)}
+            />
+            <label style={radioLabelStyle} name="burgers">
+              Burgers
+            </label>
 
-        <h6 style={labelStyle}>
-          Price
-          <br />
-          <input
-            style={inputStyle}
-            type="number"
-            name="price"
-            disabled={!isEditing}
-            value={price || ""}
-            onChange={(e) => setPrice(e.currentTarget.value)}
-          />
-        </h6>
-      </div>
-      <div style={{ ...containerStyle, height: "140px" }}>
-        <h6 style={labelStyle}>
-          Description <br />
-          <textarea
-            rows="4"
-            style={{ ...inputStyle, width: "300px" }}
-            type="text"
-            name="description"
-            disabled={!isEditing}
-            value={description}
-            onChange={(e) => setDescription(e.currentTarget.value)}
-          />
-        </h6>
-      </div>
+            <input
+              type="radio"
+              name="category"
+              value="Steak or Ribs"
+              checked={category === "Steak or Ribs"}
+              disabled={!isEditing}
+              onChange={(e) => setCategory(e.currentTarget.value)}
+            />
+            <label style={radioLabelStyle} name="steak">
+              Steak or Ribs
+            </label>
+            <input
+              type="radio"
+              name="category"
+              value="Sweets"
+              checked={category === "Sweets"}
+              disabled={!isEditing}
+              onChange={(e) => setCategory(e.currentTarget.value)}
+            />
+            <label style={radioLabelStyle} name="sweets">
+              Sweets
+            </label>
+            <input
+              type="radio"
+              name="category"
+              value="Drinks"
+              checked={category === "Drinks"}
+              disabled={!isEditing}
+              onChange={(e) => setCategory(e.currentTarget.value)}
+            />
+            <label style={radioLabelStyle} name="drinks">
+              Drinks
+            </label>
+          </div>
+          <div style={{ ...containerStyle, height: "80px" }}>
+            <h6 style={labelStyle}>
+              Title <br />
+              <input
+                style={inputStyle}
+                type="text"
+                name="title"
+                disabled={!isEditing}
+                value={title || ""}
+                onChange={(e) => setTitle(e.currentTarget.value)}
+              />
+            </h6>
 
-      <div style={containerStyle}>
-        {!isEditing ? (
-          <button
-            style={buttonStyle}
-            type="button"
-            onClick={() => setIsEditing(true)}
+            <h6 style={labelStyle}>
+              Price
+              <br />
+              <input
+                style={inputStyle}
+                type="number"
+                name="price"
+                disabled={!isEditing}
+                value={price || ""}
+                onChange={(e) => setPrice(e.currentTarget.value)}
+              />
+            </h6>
+          </div>
+          <div
+            style={{
+              ...containerStyle,
+            }}
           >
-            Edit
-          </button>
-        ) : (
-          <button
-            style={{ ...buttonStyle, backgroundColor: "#1d7155" }}
-            type="button"
-            onClick={() => updateItem()}
-          >
-            Save
-          </button>
-        )}
-        <button
-          style={{ ...buttonStyle, backgroundColor: "#aa443c" }}
-          type="button"
-          onClick={() => deleteItem()}
-        >
-          Delete
-        </button>
-      </div>
+            <h6 style={labelStyle}>
+              Description <br />
+              <textarea
+                rows="4"
+                style={{ ...inputStyle, width: "300px" }}
+                type="text"
+                name="description"
+                disabled={!isEditing}
+                value={description}
+                onChange={(e) => setDescription(e.currentTarget.value)}
+              />
+            </h6>
+          </div>
+
+          <div style={{ textAlign: "center" }}>
+            {!isEditing ? (
+              <button
+                style={buttonStyle}
+                type="button"
+                onClick={() => setIsEditing(true)}
+              >
+                Edit
+              </button>
+            ) : (
+              <button
+                style={{ ...buttonStyle, backgroundColor: "#1d7155" }}
+                type="button"
+                onClick={() => updateItem()}
+              >
+                Save
+              </button>
+            )}
+            <button
+              style={{ ...buttonStyle, backgroundColor: "#aa443c" }}
+              type="button"
+              onClick={() => deleteItem()}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -234,7 +262,7 @@ const inputStyle = {
 
 const buttonStyle = {
   fontFamily: "Bebas Neue",
-  margin: "20px auto",
+  margin: "0 10px 20px 10px",
   width: "100px",
   backgroundColor: "#2b5d7e",
   border: "none",
