@@ -20,14 +20,7 @@ export function saveMenu(updatedMenu) {
 
 export function doesMenuExist(id) {
   let currentMenu = getMenu();
-  let item = currentMenu.find((item) => {
-    return item.id === id;
-  });
-  if (item) {
-    return true;
-  } else {
-    return false;
-  }
+  return currentMenu.some((item) => item.id === id);
 }
 
 export const makeRequest = (url, method, body) => {
