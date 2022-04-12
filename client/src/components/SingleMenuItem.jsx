@@ -6,7 +6,7 @@ const SingleMenuItem = () => {
   const location = useLocation();
   const id = location.state;
   const navigate = useNavigate();
-  const [item, setItem] = useState([]);
+  const [item, setItem] = useState([] || "");
 
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
@@ -18,13 +18,16 @@ const SingleMenuItem = () => {
   const [isHiddingForm, setIsHiddingForm] = useState(false);
 
   useEffect(() => {
-    let response = makeRequest(`/api/menu/${id}`, "GET");
-    response.then((jsonData) => setItem(jsonData));
+    const fetchData = async () => {
+      let response = await makeRequest(`/api/menu/${id}`, "GET");
+      setItem(response);
 
-    setTitle(item.title);
-    setPrice(item.price);
-    setDescription(item.description);
-    setCategory(item.category);
+      setTitle(item.title);
+      setPrice(item.price);
+      setDescription(item.description);
+      setCategory(item.category);
+    };
+    fetchData();
   }, [id, item.category, item.description, item.price, item.title]);
 
   const updateItem = async () => {
@@ -64,128 +67,142 @@ const SingleMenuItem = () => {
           <span style={{ color: "#0e2636" }}> ★</span>
         </h1>
       </div>
-
-      {isHiddingForm ? (
+      {item.length > 1 ? (
         <div style={{ height: "340px", textAlign: "center" }}>
-          <h2 style={{ marginTop: "130px", lineHeight: "25px" }}>
-            {putOrDeleteStatus}
-          </h2>
-          <h4 style={{ fontWeight: "unset", color: "#a38764" }}>
-            You will be directed to the menu...
-          </h4>
+          <h2 style={{ marginTop: "130px", lineHeight: "25px" }}>{item}</h2>
+          <button
+            style={{ ...buttonStyle, width: "120px" }}
+            type="button"
+            onClick={() => navigate("/")}
+          >
+            Back to Menu
+          </button>
         </div>
       ) : (
         <div>
-          <div style={radioContainerStyle}>
-            <input
-              type="radio"
-              name="category"
-              value="Burgers"
-              checked={category === "Burgers"}
-              disabled={!isEditing}
-              onChange={(e) => setCategory(e.currentTarget.value)}
-            />
-            <label name="burgers">Burgers</label>
+          {isHiddingForm ? (
+            <div style={{ height: "340px", textAlign: "center" }}>
+              <h2 style={{ marginTop: "130px", lineHeight: "25px" }}>
+                {putOrDeleteStatus}
+              </h2>
+              <h4 style={{ fontWeight: "unset", color: "#a38764" }}>
+                You will be directed to the menu...
+              </h4>
+            </div>
+          ) : (
+            <div>
+              <div style={radioContainerStyle}>
+                <input
+                  type="radio"
+                  name="category"
+                  value="Burgers"
+                  checked={category === "Burgers"}
+                  disabled={!isEditing}
+                  onChange={(e) => setCategory(e.currentTarget.value)}
+                />
+                <label name="burgers">Burgers</label>
 
-            <input
-              type="radio"
-              name="category"
-              value="Steak or Ribs"
-              checked={category === "Steak or Ribs"}
-              disabled={!isEditing}
-              onChange={(e) => setCategory(e.currentTarget.value)}
-            />
-            <label name="steak">Steak or Ribs</label>
-            <input
-              type="radio"
-              name="category"
-              value="Sweets"
-              checked={category === "Sweets"}
-              disabled={!isEditing}
-              onChange={(e) => setCategory(e.currentTarget.value)}
-            />
-            <label name="sweets">Sweets</label>
-            <input
-              type="radio"
-              name="category"
-              value="Drinks"
-              checked={category === "Drinks"}
-              disabled={!isEditing}
-              onChange={(e) => setCategory(e.currentTarget.value)}
-            />
-            <label name="drinks">Drinks</label>
-          </div>
-          <div style={{ ...containerStyle, height: "80px" }}>
-            <h6 style={labelStyle}>
-              Title <br />
-              <input
-                style={inputStyle}
-                type="text"
-                name="title"
-                disabled={!isEditing}
-                value={title || ""}
-                onChange={(e) => setTitle(e.currentTarget.value)}
-              />
-            </h6>
+                <input
+                  type="radio"
+                  name="category"
+                  value="Steak or Ribs"
+                  checked={category === "Steak or Ribs"}
+                  disabled={!isEditing}
+                  onChange={(e) => setCategory(e.currentTarget.value)}
+                />
+                <label name="steak">Steak or Ribs</label>
+                <input
+                  type="radio"
+                  name="category"
+                  value="Sweets"
+                  checked={category === "Sweets"}
+                  disabled={!isEditing}
+                  onChange={(e) => setCategory(e.currentTarget.value)}
+                />
+                <label name="sweets">Sweets</label>
+                <input
+                  type="radio"
+                  name="category"
+                  value="Drinks"
+                  checked={category === "Drinks"}
+                  disabled={!isEditing}
+                  onChange={(e) => setCategory(e.currentTarget.value)}
+                />
+                <label name="drinks">Drinks</label>
+              </div>
+              <div style={{ ...containerStyle, height: "80px" }}>
+                <h6 style={labelStyle}>
+                  Title <br />
+                  <input
+                    style={inputStyle}
+                    type="text"
+                    name="title"
+                    disabled={!isEditing}
+                    value={title || ""}
+                    onChange={(e) => setTitle(e.currentTarget.value)}
+                  />
+                </h6>
 
-            <h6 style={labelStyle}>
-              Price
-              <br />
-              <input
-                style={inputStyle}
-                type="number"
-                name="price"
-                disabled={!isEditing}
-                value={price || ""}
-                onChange={(e) => setPrice(e.currentTarget.value)}
-              />
-            </h6>
-          </div>
-          <div
-            style={{
-              ...containerStyle,
-            }}
-          >
-            <h6 style={labelStyle}>
-              Description <br />
-              <textarea
-                rows="4"
-                style={{ ...inputStyle, width: "300px" }}
-                type="text"
-                name="description"
-                disabled={!isEditing}
-                value={description}
-                onChange={(e) => setDescription(e.currentTarget.value)}
-              />
-            </h6>
-          </div>
-
-          <div style={{ textAlign: "center" }}>
-            {!isEditing ? (
-              <button
-                style={buttonStyle}
-                type="button"
-                onClick={() => setIsEditing(true)}
+                <h6 style={labelStyle}>
+                  Price
+                  <br />
+                  <input
+                    style={inputStyle}
+                    type="number"
+                    name="price"
+                    disabled={!isEditing}
+                    value={price || ""}
+                    onChange={(e) => setPrice(e.currentTarget.value)}
+                  />
+                </h6>
+              </div>
+              <div
+                style={{
+                  ...containerStyle,
+                }}
               >
-                Edit
-              </button>
-            ) : (
-              <button
-                style={{ ...buttonStyle, backgroundColor: "#1d7155" }}
-                type="button"
-                onClick={() => updateItem()}
-              >
-                Save
-              </button>
-            )}
-            <button
-              style={{ ...buttonStyle, backgroundColor: "#aa443c" }}
-              type="button"
-              onClick={() => deleteItem()}
-            >
-              Delete
-            </button>
-          </div>
+                <h6 style={labelStyle}>
+                  Description <br />
+                  <textarea
+                    rows="4"
+                    style={{ ...inputStyle, width: "300px" }}
+                    type="text"
+                    name="description"
+                    disabled={!isEditing}
+                    value={description}
+                    onChange={(e) => setDescription(e.currentTarget.value)}
+                  />
+                </h6>
+              </div>
+
+              <div style={{ textAlign: "center" }}>
+                {!isEditing ? (
+                  <button
+                    style={buttonStyle}
+                    type="button"
+                    onClick={() => setIsEditing(true)}
+                  >
+                    Edit
+                  </button>
+                ) : (
+                  <button
+                    style={{ ...buttonStyle, backgroundColor: "#1d7155" }}
+                    type="button"
+                    onClick={() => updateItem()}
+                  >
+                    Save
+                  </button>
+                )}
+                <button
+                  style={{ ...buttonStyle, backgroundColor: "#aa443c" }}
+                  type="button"
+                  onClick={() => deleteItem()}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
