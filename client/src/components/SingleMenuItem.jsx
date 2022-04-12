@@ -85,7 +85,12 @@ const SingleMenuItem = () => {
       ) : (
         <div>
           {isHiddingForm ? (
-            <div style={{ height: "340px", textAlign: "center" }}>
+            <div
+              style={{
+                height: "240px",
+                textAlign: "center",
+              }}
+            >
               <h2 style={{ marginTop: "130px", lineHeight: "25px" }}>
                 {putOrDeleteStatus}
               </h2>
