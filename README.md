@@ -8,19 +8,18 @@ The API has 5 endpoints (2 GETs, POST, PUT and DELETE) using JSON format for tra
 
 ### Getting started
 
-```
-npm i
-```
-Open 2 terminals write the below commands:
+Download the ZIP, open 2 terminals in your code editor and write the below commands separately:
 
 1. Run the **server** on [http://localhost:8080](http://localhost:8080)
    ```
+   npm i
    cd server
    npm run dev
    ```
 
 2. Run the **client** on [http://localhost:3000](http://localhost:3000)
    ```
+   npm i
    cd client
    npm start
    ```
