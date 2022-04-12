@@ -72,6 +72,7 @@
   width: 100%;
   height: 100%;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .burger-section {
@@ -161,4 +162,98 @@
 
 .link:hover {
   color: #aa443c;
+}
+
+@media (max-width: 1200px) {
+  .logo {
+    width: 400px;
+  }
+
+  .brand,
+  .diner {
+    font-size: 52px;
+    line-height: 52px;
+  }
+
+  .star {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 1024px) {
+  #menu {
+    height: fit-content;
+  }
+
+  .logo {
+    width: 100%;
+    border-radius: 0;
+    text-transform: uppercase;
+    position: inherit;
+  }
+
+  .menu-content > * {
+    flex: 1 1 40%;
+    margin: 20px;
+  }
+
+  .menu-content {
+    align-items: start;
+    margin: 50px auto;
+    padding-bottom: 50px;
+  }
+
+  .burger-section {
+    margin-right: 10px;
+  }
+
+  .steak-section {
+    height: fit-content;
+    max-height: 80%;
+    margin-left: 10px;
+  }
+
+  .sections-right {
+    flex-direction: row;
+    margin-top: 0;
+  }
+
+  .sweets-section,
+  .drinks-section {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo {
+    height: 140px;
+  }
+
+  .brand,
+  .diner {
+    font-size: 48px;
+    line-height: 48px;
+  }
+
+  .star {
+    font-size: 42px;
+  }
+
+  .menu-content > * {
+    flex: 1 1 100%;
+  }
+  .burger-section,
+  .steak-section {
+    margin: 10px 20px;
+  }
+
+  .sections-right {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .sweets-section,
+  .drinks-section {
+    width: 100%;
+  }
 }

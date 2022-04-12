@@ -67,7 +67,7 @@ const SingleMenuItem = () => {
 
       {isHiddingForm ? (
         <div style={{ height: "340px", textAlign: "center" }}>
-          <h2 style={{ marginTop: "130px", lineHeight: "20px" }}>
+          <h2 style={{ marginTop: "130px", lineHeight: "25px" }}>
             {putOrDeleteStatus}
           </h2>
           <h4 style={{ fontWeight: "unset", color: "#a38764" }}>
@@ -85,9 +85,7 @@ const SingleMenuItem = () => {
               disabled={!isEditing}
               onChange={(e) => setCategory(e.currentTarget.value)}
             />
-            <label style={radioLabelStyle} name="burgers">
-              Burgers
-            </label>
+            <label name="burgers">Burgers</label>
 
             <input
               type="radio"
@@ -97,9 +95,7 @@ const SingleMenuItem = () => {
               disabled={!isEditing}
               onChange={(e) => setCategory(e.currentTarget.value)}
             />
-            <label style={radioLabelStyle} name="steak">
-              Steak or Ribs
-            </label>
+            <label name="steak">Steak or Ribs</label>
             <input
               type="radio"
               name="category"
@@ -108,9 +104,7 @@ const SingleMenuItem = () => {
               disabled={!isEditing}
               onChange={(e) => setCategory(e.currentTarget.value)}
             />
-            <label style={radioLabelStyle} name="sweets">
-              Sweets
-            </label>
+            <label name="sweets">Sweets</label>
             <input
               type="radio"
               name="category"
@@ -119,9 +113,7 @@ const SingleMenuItem = () => {
               disabled={!isEditing}
               onChange={(e) => setCategory(e.currentTarget.value)}
             />
-            <label style={radioLabelStyle} name="drinks">
-              Drinks
-            </label>
+            <label name="drinks">Drinks</label>
           </div>
           <div style={{ ...containerStyle, height: "80px" }}>
             <h6 style={labelStyle}>
@@ -208,7 +200,8 @@ const rootStyle = {
   border: "solid #2b5d7e 8px",
   borderRadius: "10px",
   backgroundColor: "#eddbc5",
-  width: "600px",
+  width: "90%",
+  maxWidth: "600px",
 };
 
 const headerStyle = {
@@ -226,13 +219,11 @@ const radioContainerStyle = {
   fontFamily: "Bebas Neue",
   fontSize: "20px",
   margin: "20px auto 10px auto",
-  textAlign: "left",
   display: "flex",
+  flexWrap: "wrap",
+  gap: "10px",
   justifyContent: "center",
-};
-
-const radioLabelStyle = {
-  margin: "0 10px 0 5px",
+  width: "85%",
 };
 
 const containerStyle = {

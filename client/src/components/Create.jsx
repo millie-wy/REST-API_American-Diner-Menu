@@ -49,9 +49,7 @@ const Create = () => {
               required
               onChange={(e) => setCategory(e.currentTarget.value)}
             />
-            <label style={radioLabelStyle} name="burgers">
-              Burgers
-            </label>
+            <label name="burgers">Burgers</label>
 
             <input
               type="radio"
@@ -60,9 +58,7 @@ const Create = () => {
               required
               onChange={(e) => setCategory(e.currentTarget.value)}
             />
-            <label style={radioLabelStyle} name="steak">
-              Steak or Ribs
-            </label>
+            <label name="steak">Steak or Ribs</label>
             <input
               type="radio"
               name="category"
@@ -70,9 +66,7 @@ const Create = () => {
               required
               onChange={(e) => setCategory(e.currentTarget.value)}
             />
-            <label style={radioLabelStyle} name="sweets">
-              Sweets
-            </label>
+            <label name="sweets">Sweets</label>
             <input
               type="radio"
               name="category"
@@ -80,9 +74,7 @@ const Create = () => {
               required
               onChange={(e) => setCategory(e.currentTarget.value)}
             />
-            <label style={radioLabelStyle} name="drinks">
-              Drinks
-            </label>
+            <label name="drinks">Drinks</label>
           </div>
           <div
             style={{
@@ -150,7 +142,8 @@ const rootStyle = {
   border: "solid #2b5d7e 8px",
   borderRadius: "10px",
   backgroundColor: "#eddbc5",
-  width: "600px",
+  width: "90%",
+  maxWidth: "600px",
 };
 
 const headerStyle = {
@@ -168,17 +161,15 @@ const radioContainerStyle = {
   fontFamily: "Bebas Neue",
   fontSize: "20px",
   margin: "20px auto 10px auto",
-  textAlign: "left",
   display: "flex",
+  flexWrap: "wrap",
+  gap: "10px",
   justifyContent: "center",
-};
-
-const radioLabelStyle = {
-  margin: "0 10px 0 5px",
+  width: "85%",
 };
 
 const formStyle = {
-  width: "fit-content",
+  width: "100%",
   margin: "auto",
   textAlign: "left",
   display: "flex",
