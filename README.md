@@ -23,7 +23,7 @@ Open 2 terminals write the below commands:
    npm start
    ```
 ----
-(This is an individual assignment from my school
+(This is an individual assignment from my school)
 
 Krav för godkänt:
 - [x] 1. Projektet innehåller minst 4 st. endpoints (GET, POST, PUT & DELETE för en resurs)
