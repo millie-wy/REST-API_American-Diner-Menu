@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import "./menu.css";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { makeRequest } from "../helper.js";
+import "./menu.css";
 
 function App() {
   const [menu, setMenu] = useState([]);
