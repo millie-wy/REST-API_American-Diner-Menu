@@ -51,7 +51,7 @@
   {
     "category": "Steak or Ribs",
     "title": "Lamb Chops",
-    "description": "Four lamb chops pieces marinated in green herbs and spices served with Secret Mint Sauce",
+    "description": "Four Lamb Chops pieces marinated in green herbs and spices served with Secret Mint Sauce",
     "price": 329,
     "id": "b03k1"
   },
@@ -85,8 +85,8 @@
   },
   {
     "category": "Sweets",
-    "title": "Ice Cream (Two Scoops)",
-    "description": "Vanilla, Chocolate, Cookie & Cream, Strawberry",
+    "title": "Ice Cream",
+    "description": "Two Scoops of Ice Cream of your choice: Vanilla, Chocolate, Cookie & Cream, Strawberry",
     "price": 35,
     "id": "f82jv"
   },
