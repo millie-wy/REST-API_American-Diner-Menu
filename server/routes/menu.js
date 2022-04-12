@@ -1,5 +1,5 @@
 import express from "express";
-import { getMenu, saveMenu, doesMenuExist } from "../helperFunctions/helper.js";
+import { getMenu, saveMenu, doesMenuExist } from "../helper.js";
 import { nanoid } from "nanoid";
 
 const router = express.Router();
@@ -25,11 +25,7 @@ router.get("/:id", (req, res) => {
   const { id } = req.params;
   let currentMenu = getMenu();
   if (!doesMenuExist(id)) {
-    res
-      .status(404)
-      .send(
-        "The item does not exist... 💔 \nDouble check the ID and try again?"
-      );
+    res.status(404).json("The item does not exist... 💔");
   }
   let item = currentMenu.find((item) => item.id === id);
   res.send(item);

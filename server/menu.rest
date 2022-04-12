@@ -5,7 +5,7 @@ POST http://localhost:8080/api/menu
 Content-Type: application/json
 
   {
-    "category": "Burger",
+    "category": "Burgers",
     "title": "New York Buffalo Burger",
     "description": "Southern Fried Chicken Thigh Fillets, Slaw, American Cheddar, Butteremilk Ranch, Burger sauce, Brioche Bun",
     "price": 999
@@ -13,22 +13,23 @@ Content-Type: application/json
 
 ### 
 
-GET http://localhost:8080/api/menu/ZurG9
-// id should be updated
+GET http://localhost:8080/api/menu/HBTQt
+// the above id is for the first item (cheeseburger) in data
+// update if it doesn't exist
 
 ###
 PUT http://localhost:8080/api/menu
 Content-Type: application/json
 
   {
-    "category": "Burger",
+    "category": "Burgers",
     "title": "New York Buffalo Burger",
     "description": "No ingredients",
     "price": 799,
-    "id": "ZurG9"
+    "id": "en_Ab"
   }
-// id to be updated (if required)
+// id to be updated in the object (if needed)
 
 ###
-DELETE http://localhost:8080/api/menu/ZurG9
-// id should be updated in the link before sending a request
+DELETE http://localhost:8080/api/menu/en_Ab
+// id to be updated in the url

@@ -18,6 +18,7 @@ const SingleMenuItem = () => {
   const [isHiddingForm, setIsHiddingForm] = useState(false);
 
   useEffect(() => {
+    // get a specific object from the db
     const fetchData = async () => {
       let response = await makeRequest(`/api/menu/${id}`, "GET");
       setItem(response);
@@ -30,6 +31,7 @@ const SingleMenuItem = () => {
     fetchData();
   }, [id, item.category, item.description, item.price, item.title]);
 
+  // update details of a specific object in the db
   const updateItem = async () => {
     setIsEditing(false);
     let body = {
@@ -44,11 +46,13 @@ const SingleMenuItem = () => {
     showLoadingEffect(status);
   };
 
+  // delete a specific object from the db
   const deleteItem = async () => {
     let status = await makeRequest(`/api/menu/${id}`, "DELETE");
     showLoadingEffect(status);
   };
 
+  // reset status and redirect user back to menu after 2s
   const showLoadingEffect = (status) => {
     setIsHiddingForm(true);
     setPutOrDeleteStatus(status);

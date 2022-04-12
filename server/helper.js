@@ -1,11 +1,13 @@
 import fs from "fs";
 
+// get the full db
 export function getMenu() {
   let menuData = fs.readFileSync("./menuData.json");
   let menu = JSON.parse(menuData);
   return menu;
 }
 
+// save an item to the db
 export function saveMenu(updatedMenu) {
   fs.writeFileSync(
     "./menuData.json",
@@ -18,29 +20,8 @@ export function saveMenu(updatedMenu) {
   );
 }
 
+// check if the item exists in the db
 export function doesMenuExist(id) {
   let currentMenu = getMenu();
   return currentMenu.some((item) => item.id === id);
 }
-
-export const makeRequest = (url, method, body) => {
-  let response = fetch(url, {
-    method,
-    body: JSON.stringify(body),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  return response.json();
-};
-
-export const makeRequestOrg = async (url, method, body) => {
-  let response = await fetch(url, {
-    method,
-    body: JSON.stringify(body),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  return response.json();
-};

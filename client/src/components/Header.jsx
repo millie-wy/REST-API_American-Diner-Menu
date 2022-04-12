@@ -32,9 +32,6 @@ const linkStyle = {
 
 const iconStyle = {
   paddingRight: "10px",
-  "&:hover": {
-    color: "blue",
-  },
 };
 
 export default Header;

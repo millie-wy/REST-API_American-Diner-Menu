@@ -9,6 +9,7 @@ const Create = () => {
   const [isAdded, setIsAdded] = useState(false);
   const [postStatus, setPostStatus] = useState("");
 
+  // add item to db on form submit
   const addItem = async (e) => {
     setIsAdded(true);
     e.preventDefault();

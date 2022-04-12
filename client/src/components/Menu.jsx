@@ -7,8 +7,12 @@ function App() {
   const [menu, setMenu] = useState([]);
 
   useEffect(() => {
-    let response = makeRequest("/api/menu", "GET");
-    response.then((jsonData) => setMenu([jsonData]));
+    // get full menu (all data) from db
+    const fetchData = async () => {
+      let response = makeRequest("/api/menu", "GET");
+      response.then((jsonData) => setMenu([jsonData]));
+    };
+    fetchData();
   }, []);
 
   return menu.length === 0 ? (
