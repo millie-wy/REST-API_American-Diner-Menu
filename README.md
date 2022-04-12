@@ -12,15 +12,15 @@ Download the ZIP, open 2 terminals in your code editor and write the below comma
 
 1. Run the **server** on [http://localhost:8080](http://localhost:8080)
    ```
-   npm i
    cd server
+   npm i
    npm run dev
    ```
 
 2. Run the **client** on [http://localhost:3000](http://localhost:3000)
    ```
-   npm i
    cd client
+   npm i
    npm start
    ```
 ----
