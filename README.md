@@ -4,6 +4,8 @@ A mocked American Diner menu with a REST-API created with NodeJS and Express. <b
 
 The API has 5 endpoints (2 GETs, POST, PUT and DELETE) using JSON format for transporting the data, adding new items and also fetching, updating and deleting a specific item. The client side was written with React / JavaScript.
 
+[To my repo](https://github.com/millie-wy/REST-API_American-Diner-Menu, "REST-API - American Diner Menu")
+
 ### Getting started
 
 ```
