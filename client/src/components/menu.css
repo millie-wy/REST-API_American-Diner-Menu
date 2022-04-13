@@ -41,6 +41,7 @@
   background-color: #2b5d7e;
   border-radius: 0 0 15px 15px;
   text-transform: uppercase;
+  overflow-x: scroll;
 }
 
 .brand {
@@ -231,17 +232,17 @@
 
 @media (max-width: 768px) {
   .logo {
-    height: 140px;
+    height: fit-content;
   }
 
   .brand,
   .diner {
-    font-size: 48px;
-    line-height: 48px;
+    font-size: 2rem;
+    line-height: 2.2rem;
   }
 
   .star {
-    font-size: 42px;
+    font-size: 1.8rem;
   }
 
   .menu-content > * {
