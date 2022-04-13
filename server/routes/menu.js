@@ -36,11 +36,7 @@ router.put("/", (req, res) => {
   const { id, title } = req.body;
   let currentMenu = getMenu();
   if (!doesMenuExist(id)) {
-    res
-      .status(404)
-      .send(
-        "The item does not exist... 💔 \nDouble check the ID and try again?"
-      );
+    res.status(404).json("The item does not exist... 💔");
     return;
   }
   let adjustedMenu = currentMenu.map((item) => {
@@ -58,11 +54,7 @@ router.delete("/:id", (req, res) => {
   const { id } = req.params;
   let currentMenu = getMenu();
   if (!doesMenuExist(id)) {
-    res
-      .status(404)
-      .send(
-        "The item does not exist... 💔 \nDouble check the ID and try again?"
-      );
+    res.status(404).json("The item does not exist... 💔");
   }
   let itemToBeDeleted = currentMenu.find((item) => item.id === id);
   let adjustMenu = currentMenu.filter((item) => item.id != id);
