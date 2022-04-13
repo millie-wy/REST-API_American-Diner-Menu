@@ -73,9 +73,16 @@ const SingleMenuItem = () => {
       </div>
       {item.length > 1 ? (
         <div style={{ height: "340px", textAlign: "center" }}>
-          <h2 style={{ marginTop: "130px", lineHeight: "25px" }}>{item}</h2>
+          <h2
+            style={{ marginTop: "100px", marginBottom: 0, lineHeight: "25px" }}
+          >
+            {item}
+          </h2>
+          <p>
+            This may be due to an invalid link or the item has been removed.
+          </p>
           <button
-            style={{ ...buttonStyle, width: "120px" }}
+            style={{ ...buttonStyle, width: "120px", marginTop: "20px" }}
             type="button"
             onClick={() => navigate("/")}
           >
