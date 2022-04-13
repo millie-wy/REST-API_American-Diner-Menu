@@ -14,7 +14,7 @@ Download the ZIP, open 2 terminals in your code editor and write the below comma
    ```
    cd server
    npm i
-   npm run dev
+   npm start
    ```
 
 2. Run the **client** on [http://localhost:3000](http://localhost:3000)
